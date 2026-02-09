@@ -11,7 +11,7 @@ export default function Container({ children }: { children: React.ReactNode }) {
       <header>
         <Navigation />
       </header>
-      <main className="flex-1 relative">{children}</main>
+      <main className="flex-1 relative flex">{children}</main>
     </div>
   );
 }

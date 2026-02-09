@@ -3,7 +3,7 @@
 import { useState } from "react";
 import ScrambleText from "@/app/components/ScrambleText";
 import PhTime from "@/app/components/PhTime";
-import ProjectCard from "./ProjectCard";
+import ProjectCard from "../components/ProjectCard";
 import { projects } from "@/app/lib/mocks";
 
 export default function Home() {

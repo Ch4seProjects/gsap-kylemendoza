@@ -19,7 +19,14 @@ interface ScrambleTextProps {
   as?: "p" | "span";
 }
 
-export default function ScrambleText({ text, className = "", withHover = false, href, scrambleOn, as: Tag = "p" }: ScrambleTextProps) {
+export default function ScrambleText({
+  text,
+  className = "",
+  withHover = false,
+  href,
+  scrambleOn,
+  as: Tag = "p",
+}: ScrambleTextProps) {
   const wordRefs = useRef<(HTMLSpanElement | null)[]>([]);
   const pathname = usePathname();
   const isActive = href ? pathname === href : false;
@@ -31,7 +38,12 @@ export default function ScrambleText({ text, className = "", withHover = false, 
       if (el) {
         gsap.to(el, {
           duration: 0.8,
-          scrambleText: { text: word, speed: 1, chars: scrambleChars, tweenLength: false },
+          scrambleText: {
+            text: word,
+            speed: 1,
+            chars: scrambleChars,
+            tweenLength: false,
+          },
         });
       }
     });
@@ -48,7 +60,7 @@ export default function ScrambleText({ text, className = "", withHover = false, 
   }, [scrambleOn, scramble]);
 
   const handleMouseEnter = useCallback(() => {
-    const isTweening = wordRefs.current.some(el => el && gsap.isTweening(el));
+    const isTweening = wordRefs.current.some((el) => el && gsap.isTweening(el));
     if (!isTweening) scramble();
   }, [scramble]);
 
@@ -58,7 +70,13 @@ export default function ScrambleText({ text, className = "", withHover = false, 
 
   const wordElements = words.map((word, i) => (
     <span key={i}>
-      <span ref={(el) => { wordRefs.current[i] = el; }}>{word}</span>
+      <span
+        ref={(el) => {
+          wordRefs.current[i] = el;
+        }}
+      >
+        {word}
+      </span>
       {i < words.length - 1 && " "}
     </span>
   ));
@@ -70,7 +88,11 @@ export default function ScrambleText({ text, className = "", withHover = false, 
   };
 
   if (href) {
-    return <Link href={href} {...props}>{wordElements}</Link>;
+    return (
+      <Link href={href} {...props}>
+        {wordElements}
+      </Link>
+    );
   }
 
   return <Tag {...props}>{wordElements}</Tag>;

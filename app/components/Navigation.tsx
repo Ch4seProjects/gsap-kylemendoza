@@ -20,12 +20,12 @@ export default function Navigation() {
         text="info"
         className="font-mono text-xs uppercase w-fit"
       />
-      <ScrambleText
+      {/* <ScrambleText
         withHover
         href="/archives"
         text="archives"
         className="font-mono text-xs uppercase w-fit"
-      />
+      /> */}
     </nav>
   );
 }
