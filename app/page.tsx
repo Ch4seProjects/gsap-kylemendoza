@@ -4,7 +4,7 @@ import { useState } from "react";
 import Container from "./components/layout/Container";
 import ScrambleText from "@/app/components/ScrambleText";
 import PhTime from "@/app/components/PhTime";
-import ProjectCard from "./components/ProjectCard";
+import ProjectShowcase from "./components/ProjectShowcase";
 import { projects } from "@/app/lib/mocks";
 
 export default function Page() {
@@ -14,8 +14,8 @@ export default function Page() {
   return (
     <Container>
       <div className="absolute top-1/2 left-0 w-full transform -translate-y-[80%]">
-        <div className="grid grid-cols-10 gap-x-4 items-end h-70">
-          <div className="font-sans text-[128px] uppercase col-span-6">
+        <div className="grid grid-cols-4 lg:grid-cols-10 gap-x-4 items-end h-50 lg:h-70">
+          <div className="font-sans text-5xl lg:text-[128px] font-medium lg:font-normal uppercase col-span-4 lg:col-span-6">
             <ScrambleText
               text={
                 hoveredProject ? hoveredProject.name : "Kyle Dominic Mendoza"
@@ -51,18 +51,10 @@ export default function Page() {
           </div>
         </div>
       </div>
-      <div className="group/grid absolute bottom-0 w-full grid grid-cols-5">
-        {projects.map((project, i) => (
-          <ProjectCard
-            key={i}
-            index={i}
-            image={project.images[0]}
-            href={`/projects/${project.slug}`}
-            onHover={() => setHoveredIndex(i)}
-            onLeave={() => setHoveredIndex(null)}
-          />
-        ))}
-      </div>
+      <ProjectShowcase
+        onHover={(i) => setHoveredIndex(i)}
+        onLeave={() => setHoveredIndex(null)}
+      />
     </Container>
   );
 }

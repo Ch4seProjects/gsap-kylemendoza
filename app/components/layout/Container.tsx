@@ -1,13 +1,10 @@
 import Navigation from "../Navigation";
+import GridBackground from "./GridBackground";
 
 export default function Container({ children }: { children: React.ReactNode }) {
   return (
-    <div className="p-6 h-screen relative flex flex-col">
-      <div className="absolute inset-0 grid grid-cols-10 gap-x-4 px-6 -z-10">
-        {Array.from({ length: 10 }).map((_, i) => {
-          return <div className="h-full border-x border-gray-600/10" key={i} />;
-        })}
-      </div>
+    <div className="p-4 lg:p-6 h-screen relative flex flex-col">
+      <GridBackground />
       <header>
         <Navigation />
       </header>

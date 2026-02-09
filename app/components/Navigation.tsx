@@ -8,26 +8,20 @@ export default function Navigation() {
         href="/"
         activeHighlight={false}
         text="Kyle Dominic Mendoza"
-        className="font-mono text-xs uppercase col-span-6 w-fit"
+        className="font-mono text-[11px] lg:text-xs uppercase col-span-6 w-fit"
       />
       <ScrambleText
         withHover
         href="/"
         text="work"
-        className="font-mono text-xs uppercase w-fit"
+        className="font-mono text-xs uppercase w-fit hidden lg:block"
       />
       <ScrambleText
         withHover
         href="/info"
         text="info"
-        className="font-mono text-xs uppercase w-fit"
+        className="font-mono text-xs uppercase w-fit hidden lg:block"
       />
-      {/* <ScrambleText
-        withHover
-        href="/archives"
-        text="archives"
-        className="font-mono text-xs uppercase w-fit"
-      /> */}
     </nav>
   );
 }
