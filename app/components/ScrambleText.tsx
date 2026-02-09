@@ -16,6 +16,7 @@ interface ScrambleTextProps {
   withHover?: boolean;
   href?: string;
   scrambleOn?: boolean;
+  activeHighlight?: boolean;
   as?: "p" | "span";
 }
 
@@ -25,11 +26,12 @@ export default function ScrambleText({
   withHover = false,
   href,
   scrambleOn,
+  activeHighlight = true,
   as: Tag = "p",
 }: ScrambleTextProps) {
   const wordRefs = useRef<(HTMLSpanElement | null)[]>([]);
   const pathname = usePathname();
-  const isActive = href ? pathname === href : false;
+  const isActive = activeHighlight && href ? pathname === href : false;
   const words = text.split(" ");
 
   const scramble = useCallback(() => {

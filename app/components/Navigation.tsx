@@ -5,6 +5,8 @@ export default function Navigation() {
     <nav aria-label="Main navigation" className="grid grid-cols-10 gap-x-4">
       <ScrambleText
         withHover
+        href="/"
+        activeHighlight={false}
         text="Kyle Dominic Mendoza"
         className="font-mono text-xs uppercase col-span-6 w-fit"
       />

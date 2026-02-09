@@ -2,23 +2,27 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import ScrambleText from "@/app/components/ScrambleText";
 
 export default function ProjectCard({
   index,
   image,
+  href,
   onHover,
   onLeave,
 }: {
   index: number;
   image: string;
+  href: string;
   onHover: () => void;
   onLeave: () => void;
 }) {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <div
+    <Link
+      href={href}
       className="group h-70 flex flex-col gap-2 px-2 cursor-pointer justify-end transition-[filter] duration-500 group-hover/grid:blur-xs hover:blur-none!"
       onMouseEnter={() => {
         setIsHovered(true);
@@ -60,6 +64,6 @@ export default function ProjectCard({
           />
         </div>
       </div>
-    </div>
+    </Link>
   );
 }

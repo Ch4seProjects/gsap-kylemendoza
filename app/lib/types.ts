@@ -1,4 +1,5 @@
 export interface Project {
+  slug: string;
   name: string;
   year: number;
   services: string[];
