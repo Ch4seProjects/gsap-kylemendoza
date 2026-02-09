@@ -1,18 +1,42 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import ScrambleText from "@/app/components/ScrambleText";
 
-export default function ProjectCard({ index }: { index: number }) {
+export default function ProjectCard({
+  index,
+  image,
+  onHover,
+  onLeave,
+}: {
+  index: number;
+  image: string;
+  onHover: () => void;
+  onLeave: () => void;
+}) {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
     <div
-      className="group h-70 flex flex-col gap-2 cursor-pointer justify-end transition-[filter] duration-500 group-hover/grid:blur-[2px] hover:blur-none!"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+      className="group h-70 flex flex-col gap-2 px-2 cursor-pointer justify-end transition-[filter] duration-500 group-hover/grid:blur-xs hover:blur-none!"
+      onMouseEnter={() => {
+        setIsHovered(true);
+        onHover();
+      }}
+      onMouseLeave={() => {
+        setIsHovered(false);
+        onLeave();
+      }}
     >
-      <div className="h-[80%] bg-red-400 rounded-lg transition-all duration-500 group-hover/grid:h-[60%] group-hover:h-[80%]!"></div>
+      <div className="relative h-[80%] rounded-lg overflow-hidden transition-all duration-500 group-hover/grid:h-[60%] group-hover:h-[80%]!">
+        <Image
+          src={image}
+          alt={`Project ${index + 1}`}
+          fill
+          className="object-cover"
+        />
+      </div>
       <div className="flex justify-between h-[20%]">
         <p className="font-mono text-gray-600 text-xs uppercase transition-colors duration-300 group-hover:text-white">
           <span className="transition-colors duration-300 group-hover:text-[#9eff00]">

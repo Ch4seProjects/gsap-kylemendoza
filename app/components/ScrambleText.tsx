@@ -20,75 +20,58 @@ interface ScrambleTextProps {
 }
 
 export default function ScrambleText({ text, className = "", withHover = false, href, scrambleOn, as: Tag = "p" }: ScrambleTextProps) {
-  const ref = useRef<HTMLElement>(null);
+  const wordRefs = useRef<(HTMLSpanElement | null)[]>([]);
   const pathname = usePathname();
   const isActive = href ? pathname === href : false;
+  const words = text.split(" ");
 
-  useEffect(() => {
-    const el = ref.current;
-    if (el) {
-      gsap.to(el, {
-        duration: 0.8,
-        scrambleText: {
-          text: text,
-          speed: 1,
-          chars: scrambleChars,
-          tweenLength: false,
-        },
-      });
-    }
-  }, [text]);
-
-  useEffect(() => {
-    if (scrambleOn) {
-      const el = ref.current;
+  const scramble = useCallback(() => {
+    text.split(" ").forEach((word, i) => {
+      const el = wordRefs.current[i];
       if (el) {
         gsap.to(el, {
           duration: 0.8,
-          scrambleText: {
-            text: text,
-            speed: 1,
-            chars: scrambleChars,
-            tweenLength: false,
-          },
+          scrambleText: { text: word, speed: 1, chars: scrambleChars, tweenLength: false },
         });
       }
-    }
-  }, [scrambleOn, text]);
-
-  const handleMouseEnter = useCallback(() => {
-    const el = ref.current;
-    if (el && !gsap.isTweening(el)) {
-      gsap.to(el, {
-        duration: 0.8,
-        scrambleText: {
-          text: text,
-          speed: 1,
-          chars: scrambleChars,
-          tweenLength: false,
-        },
-      });
-    }
+    });
   }, [text]);
 
-  const sharedProps = {
-    ref: ref as React.RefObject<any>,
-    className: `${withHover ? `cursor-pointer before:content-['['] after:content-[']'] before:text-[#9eff00] after:text-[#9eff00] ${isActive ? "before:visible after:visible" : "before:invisible after:invisible"} hover:before:visible hover:after:visible` : ""} ${className}`,
+  // Scramble on mount and when text changes
+  useEffect(() => {
+    scramble();
+  }, [scramble]);
+
+  // Scramble when explicitly triggered (e.g. hover on project card)
+  useEffect(() => {
+    if (scrambleOn) scramble();
+  }, [scrambleOn, scramble]);
+
+  const handleMouseEnter = useCallback(() => {
+    const isTweening = wordRefs.current.some(el => el && gsap.isTweening(el));
+    if (!isTweening) scramble();
+  }, [scramble]);
+
+  const hoverClass = withHover
+    ? `cursor-pointer before:content-['['] after:content-[']'] before:text-[#9eff00] after:text-[#9eff00] ${isActive ? "before:visible after:visible" : "before:invisible after:invisible"} hover:before:visible hover:after:visible`
+    : "";
+
+  const wordElements = words.map((word, i) => (
+    <span key={i}>
+      <span ref={(el) => { wordRefs.current[i] = el; }}>{word}</span>
+      {i < words.length - 1 && " "}
+    </span>
+  ));
+
+  const props = {
+    className: `${hoverClass} ${className}`,
     "data-text": text,
     onMouseEnter: withHover ? handleMouseEnter : undefined,
   };
 
   if (href) {
-    return (
-      <Link href={href} {...sharedProps}>
-        {text}
-      </Link>
-    );
+    return <Link href={href} {...props}>{wordElements}</Link>;
   }
 
-  return (
-    <Tag {...sharedProps}>
-      {text}
-    </Tag>
-  );
+  return <Tag {...props}>{wordElements}</Tag>;
 }
