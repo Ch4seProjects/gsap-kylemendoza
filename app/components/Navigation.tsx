@@ -28,6 +28,12 @@ export default function Navigation() {
         text="info"
         className="font-mono text-xs uppercase w-fit hidden lg:block"
       />
+      <ScrambleText
+        withHover
+        href="/blogs"
+        text="blogs"
+        className="font-mono text-xs uppercase w-fit hidden lg:block"
+      />
     </nav>
   );
 }

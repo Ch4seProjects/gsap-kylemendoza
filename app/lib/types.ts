@@ -8,3 +8,12 @@ export interface Project {
   images: string[];
   description: string;
 }
+
+export interface BlogPost {
+  title: string;
+  slug: string;
+  pubDate: string;
+  content: string;
+  thumbnail: string;
+  link: string;
+}
