@@ -38,6 +38,12 @@ export default function ScrambleText({
     text.split(" ").forEach((word, i) => {
       const el = wordRefs.current[i];
       if (el) {
+        // Lock width to the target word's natural size to prevent jitter
+        el.style.width = "auto";
+        el.textContent = word;
+        const width = el.getBoundingClientRect().width;
+        el.style.width = `${width}px`;
+
         gsap.to(el, {
           duration: 0.8,
           scrambleText: {
@@ -45,6 +51,9 @@ export default function ScrambleText({
             speed: 1,
             chars: scrambleChars,
             tweenLength: false,
+          },
+          onComplete: () => {
+            el.style.width = "";
           },
         });
       }
@@ -76,6 +85,7 @@ export default function ScrambleText({
         ref={(el) => {
           wordRefs.current[i] = el;
         }}
+        className="inline-block"
       >
         {word}
       </span>

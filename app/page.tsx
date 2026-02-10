@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Container from "./components/layout/Container";
 import ScrambleText from "@/app/components/ScrambleText";
 import PhTime from "@/app/components/PhTime";
@@ -10,6 +10,11 @@ import { projects } from "@/app/lib/mocks";
 export default function Page() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const hoveredProject = hoveredIndex !== null ? projects[hoveredIndex] : null;
+
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 1023px)");
+    if (mq.matches) setHoveredIndex(0);
+  }, []);
 
   return (
     <Container>
