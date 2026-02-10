@@ -12,6 +12,12 @@ export default function Navigation() {
       />
       <ScrambleText
         withHover
+        activeHighlight={false}
+        text="Front-End Developer"
+        className="font-mono text-[11px] text-white/50 lg:text-xs uppercase col-span-6 w-fit lg:hidden"
+      />
+      <ScrambleText
+        withHover
         href="/"
         text="work"
         className="font-mono text-xs uppercase w-fit hidden lg:block"

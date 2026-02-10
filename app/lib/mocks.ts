@@ -11,6 +11,8 @@ export const projects: Project[] = [
     images: [
       "https://images.unsplash.com/photo-1541462608143-67571c6738dd?w=800&q=80",
       "https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=800&q=80",
+      "https://images.unsplash.com/photo-1541462608143-67571c6738dd?w=800&q=80",
+      "https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=800&q=80",
     ],
     description:
       "A creative studio platform built with modern web technologies. Features smooth page transitions, dynamic content loading, and an immersive visual experience.",

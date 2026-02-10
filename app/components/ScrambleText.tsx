@@ -31,7 +31,7 @@ export default function ScrambleText({
 }: ScrambleTextProps) {
   const wordRefs = useRef<(HTMLSpanElement | null)[]>([]);
   const pathname = usePathname();
-  const isActive = activeHighlight && href ? pathname === href : false;
+  const isActive = activeHighlight && (href ? pathname === href || pathname.startsWith(href + "projects") : false);
   const words = text.split(" ");
 
   const scramble = useCallback(() => {
