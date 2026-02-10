@@ -16,4 +16,5 @@ export interface BlogPost {
   content: string;
   thumbnail: string;
   link: string;
+  categories: string[];
 }

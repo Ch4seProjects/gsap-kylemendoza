@@ -43,6 +43,7 @@ export async function getMediumPosts(): Promise<BlogPost[]> {
     content: item["content:encoded"] ?? item.content ?? "",
     thumbnail: extractThumbnail(item["content:encoded"] ?? item.content ?? ""),
     link: item.link ?? "",
+    categories: item.categories ?? [],
   }));
 }
 
