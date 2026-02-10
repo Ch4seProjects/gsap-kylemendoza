@@ -54,7 +54,7 @@ export default async function ProjectPage({
                 </div>
               </div>
             </div>
-            <p className="text-[10px] text-white/50 leading-4 lg:leading-none lg:text-white lg:text-2xl font-mono lg:font-sans font-medium pr-2 uppercase lg:normal-case">
+            <p className="text-[10px] text-white/50 leading-4 lg:leading-none lg:text-white lg:text-2xl font-mono lg:font-sans font-medium pr-4 uppercase lg:normal-case">
               {project.description}
             </p>
           </div>

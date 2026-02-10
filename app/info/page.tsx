@@ -1,17 +1,10 @@
+"use client";
+
+import { useState } from "react";
 import Image from "next/image";
 import ScrambleText from "../components/ScrambleText";
 import Container from "../components/layout/Container";
-
-const bio = [
-  "I'm Kyle Dominic Mendoza, a Frontend Developer with hands-on experience building and enhancing web and desktop applications.",
-  "specialize in crafting efficient, scalable, and user-friendly interfaces. I work with JavaScript and specialize in all-things web.",
-  "I thrive on collaborating with teams to deliver polished, production-ready features and visually appealing web applications.",
-];
-
-const contacts = [
-  { label: "Email:", value: "kyledominicmendoza@gmail.com" },
-  { label: "LinkedIn:", value: "/in/kyleemendoza/" },
-];
+import { bio, contacts } from "@/app/lib/constants";
 
 export default function info() {
   return (
@@ -20,7 +13,7 @@ export default function info() {
         <div className="col-span-4 flex flex-col justify-between gap-6 lg:gap-0 pt-20 lg:pt-8 lg:pb-30">
           <ScrambleText
             text="INFO"
-            className="font-sans text-6xl lg:text-[120px] font-medium"
+            className="font-sans text-5xl lg:text-[120px] font-medium"
           />
           <div className="flex flex-col gap-6">
             {bio.map((text, i) => (
@@ -43,13 +36,12 @@ export default function info() {
             />
           </div>
           <div className="mt-auto hidden lg:grid grid-cols-2 gap-6">
-            {contacts.map((contact) => (
-              <ContactItem
-                key={contact.label}
-                label={contact.label}
-                value={contact.value}
-              />
-            ))}
+            <EmailContact />
+            <ProfileLink
+              label={contacts[1].label}
+              value={contacts[1].value}
+              href="https://www.linkedin.com/in/kyleemendoza/"
+            />
           </div>
         </div>
       </div>
@@ -57,14 +49,67 @@ export default function info() {
   );
 }
 
-function ContactItem({ label, value }: { label: string; value: string }) {
+function EmailContact() {
+  const [hovered, setHovered] = useState(false);
+  const [copied, setCopied] = useState(false);
+  const email = contacts[0].value;
+
+  const handleClick = () => {
+    navigator.clipboard.writeText(email);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
+  const displayText = copied
+    ? "EMAIL COPIED"
+    : hovered
+      ? "COPY EMAIL ADDRESS"
+      : email;
+
   return (
-    <div className="flex flex-col">
-      <p className="font-sans text-lg font-medium">{label}</p>
+    <div
+      className="flex flex-col cursor-pointer"
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => {
+        setHovered(false);
+        setCopied(false);
+      }}
+      onClick={handleClick}
+    >
+      <p className="font-sans text-lg font-medium">{contacts[0].label}</p>
       <ScrambleText
-        text={value}
+        text={displayText}
         className="font-mono text-[11px] uppercase text-gray-400"
       />
     </div>
+  );
+}
+
+function ProfileLink({
+  label,
+  value,
+  href,
+}: {
+  label: string;
+  value: string;
+  href: string;
+}) {
+  const [hovered, setHovered] = useState(false);
+
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="flex flex-col cursor-pointer"
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
+      <p className="font-sans text-lg font-medium">{label}</p>
+      <ScrambleText
+        text={hovered ? "VISIT PROFILE" : value}
+        className="font-mono text-[11px] uppercase text-gray-400"
+      />
+    </a>
   );
 }
