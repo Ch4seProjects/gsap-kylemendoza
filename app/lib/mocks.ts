@@ -6,6 +6,7 @@ export const projects: Project[] = [
     name: "Flavor Studios",
     year: 2025,
     services: ["Web Development", "UI/UX Design", "Branding"],
+    techStack: ["Next.js", "GSAP", "Tailwind CSS"],
     liveSite: "https://flavorstudios.co",
     carbonFootprint: "0.12g CO2/visit",
     images: [
@@ -22,6 +23,7 @@ export const projects: Project[] = [
     name: "Solara Energy",
     year: 2025,
     services: ["Web Development", "Motion Design"],
+    techStack: ["React", "Three.js", "D3.js"],
     liveSite: "https://solaraenergy.io",
     carbonFootprint: "0.08g CO2/visit",
     images: [
@@ -36,6 +38,7 @@ export const projects: Project[] = [
     name: "Nomad Collective",
     year: 2024,
     services: ["Full-Stack Development", "UI/UX Design"],
+    techStack: ["Next.js", "Node.js", "MongoDB", "Socket.io"],
     liveSite: "https://nomadcollective.com",
     carbonFootprint: "0.15g CO2/visit",
     images: [
@@ -50,6 +53,7 @@ export const projects: Project[] = [
     name: "Archetype Magazine",
     year: 2024,
     services: ["Web Development", "CMS Integration", "Typography"],
+    techStack: ["Next.js", "Sanity CMS", "Tailwind CSS"],
     liveSite: "https://archetypemag.com",
     carbonFootprint: "0.10g CO2/visit",
     images: [
@@ -64,6 +68,7 @@ export const projects: Project[] = [
     name: "Pulse Fitness",
     year: 2024,
     services: ["Web App", "UI/UX Design", "API Development"],
+    techStack: ["React", "Express", "PostgreSQL", "Chart.js"],
     liveSite: "https://pulsefitness.app",
     carbonFootprint: "0.18g CO2/visit",
     images: [

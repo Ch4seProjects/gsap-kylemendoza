@@ -10,6 +10,14 @@ export default function info() {
   return (
     <Container>
       <div className="flex-1 w-full flex flex-col-reverse justify-end lg:grid lg:grid-cols-10">
+        <div className="lg:hidden flex flex-col gap-4 mt-10">
+          <EmailContact />
+          <ProfileLink
+            label={contacts[1].label}
+            value={contacts[1].value}
+            href="https://www.linkedin.com/in/kyleemendoza/"
+          />
+        </div>
         <div className="col-span-4 flex flex-col justify-between gap-6 lg:gap-0 pt-20 lg:pt-8 lg:pb-30">
           <ScrambleText
             text="INFO"

@@ -15,8 +15,10 @@ interface ScrambleTextProps {
   className?: string;
   withHover?: boolean;
   href?: string;
+  target?: string;
   scrambleOn?: boolean;
   activeHighlight?: boolean;
+  alwaysActive?: boolean;
   as?: "p" | "span";
 }
 
@@ -25,13 +27,15 @@ export default function ScrambleText({
   className = "",
   withHover = false,
   href,
+  target,
   scrambleOn,
   activeHighlight = true,
+  alwaysActive = false,
   as: Tag = "p",
 }: ScrambleTextProps) {
   const wordRefs = useRef<(HTMLSpanElement | null)[]>([]);
   const pathname = usePathname();
-  const isActive = activeHighlight && (href ? pathname === href || (href === "/" ? pathname.startsWith("/projects") : pathname.startsWith(href + "/")) : false);
+  const isActive = alwaysActive || (activeHighlight && (href ? pathname === href || (href === "/" ? pathname.startsWith("/projects") : pathname.startsWith(href + "/")) : false));
   const words = text.split(" ");
 
   const scramble = useCallback(() => {
@@ -98,6 +102,14 @@ export default function ScrambleText({
     "data-text": text,
     onMouseEnter: withHover ? handleMouseEnter : undefined,
   };
+
+  if (href && target) {
+    return (
+      <a href={href} target={target} rel="noopener noreferrer" {...props}>
+        {wordElements}
+      </a>
+    );
+  }
 
   if (href) {
     return (

@@ -24,10 +24,20 @@ export default async function ProjectPage({
           className="font-mono text-xs uppercase w-fit lg:hidden"
         />
         <div className="col-span-3 flex flex-col justify-between gap-8 lg:gap-0">
-          <ScrambleText
-            text={project.name}
-            className="font-sans text-5xl lg:text-[60px] uppercase"
-          />
+          <div className="flex flex-col gap-2">
+            <ScrambleText
+              text={project.name}
+              className="font-sans text-5xl lg:text-[60px] uppercase"
+            />
+            <ScrambleText
+              withHover
+              alwaysActive
+              text="Live View"
+              href={project.liveSite}
+              target="_blank"
+              className="font-mono text-xs uppercase w-fit ml-1"
+            />
+          </div>
           <div className="h-1/2 flex flex-col-reverse lg:flex-col gap-4 lg:gap-0 justify-between">
             <div className="flex flex-col gap-2 lg:gap-4">
               <div className="grid grid-cols-3">
@@ -49,6 +59,21 @@ export default async function ProjectPage({
                       key={i}
                     >
                       {service}
+                    </p>
+                  ))}
+                </div>
+              </div>
+              <div className="grid grid-cols-3">
+                <p className="col-span-1 text-[11px] font-mono uppercase text-gray-500">
+                  TECH STACK
+                </p>
+                <div className="flex flex-col gap-2">
+                  {project.techStack.map((tech, i) => (
+                    <p
+                      className="col-span-1 text-[11px] font-mono uppercase"
+                      key={i}
+                    >
+                      {tech}
                     </p>
                   ))}
                 </div>

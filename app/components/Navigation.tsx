@@ -2,7 +2,10 @@ import ScrambleText from "./ScrambleText";
 
 export default function Navigation() {
   return (
-    <nav aria-label="Main navigation" className="grid grid-cols-10 gap-x-4">
+    <nav
+      aria-label="Main navigation"
+      className="grid grid-cols-10 gap-x-4 pb-4 lg:pb-0"
+    >
       <ScrambleText
         withHover
         href="/"

@@ -3,6 +3,7 @@ export interface Project {
   name: string;
   year: number;
   services: string[];
+  techStack: string[];
   liveSite: string;
   carbonFootprint: string;
   images: string[];
