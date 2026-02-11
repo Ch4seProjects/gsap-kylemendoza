@@ -29,6 +29,12 @@ export default function Container({ children }: { children: React.ReactNode }) {
           text="blogs"
           className="font-mono text-xs uppercase w-fit"
         />
+        <ScrambleText
+          withHover
+          href="/contact"
+          text="contact"
+          className="font-mono text-xs uppercase w-fit"
+        />
       </div>
     </div>
   );

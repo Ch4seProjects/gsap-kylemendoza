@@ -16,7 +16,7 @@ export default function Navigation() {
       <ScrambleText
         withHover
         activeHighlight={false}
-        text="Front-End Developer"
+        text="Software Developer"
         className="font-mono text-[11px] text-white/50 lg:text-xs uppercase col-span-6 w-fit lg:hidden"
       />
       <ScrambleText
@@ -35,6 +35,12 @@ export default function Navigation() {
         withHover
         href="/blogs"
         text="blogs"
+        className="font-mono text-xs uppercase w-fit hidden lg:block"
+      />
+      <ScrambleText
+        withHover
+        href="/contact"
+        text="contact"
         className="font-mono text-xs uppercase w-fit hidden lg:block"
       />
     </nav>
