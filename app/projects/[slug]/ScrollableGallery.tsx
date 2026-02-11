@@ -38,7 +38,7 @@ export default function ScrollableGallery({
       className="col-span-7 col-start-4 flex flex-col gap-10 overflow-y-auto scrollbar-hide"
     >
       {images.map((image, i) => (
-        <div key={i} className="relative h-[300px] lg:h-screen shrink-0">
+        <div key={i} className="relative h-75 lg:h-screen shrink-0">
           <Image
             src={image}
             alt={`${name} ${i + 1}`}

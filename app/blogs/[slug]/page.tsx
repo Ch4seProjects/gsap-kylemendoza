@@ -1,5 +1,4 @@
 import { notFound } from "next/navigation";
-import Link from "next/link";
 import Container from "@/app/components/layout/Container";
 import ScrambleText from "@/app/components/ScrambleText";
 import { getMediumPost } from "@/app/lib/medium";
@@ -17,36 +16,55 @@ export default async function BlogPost({
 
   return (
     <Container>
-      <div className="flex-1 w-full flex flex-col gap-6 pt-8 pb-20 lg:pb-8 overflow-y-auto scrollbar-hide">
-        <div className="flex flex-col gap-4">
-          <ScrambleText
-            withHover
-            href="/blogs"
-            text="blogs"
-            className="font-mono text-xs uppercase w-fit"
-          />
+      <div className="flex-1 min-h-0 w-full flex flex-col gap-12 lg:gap-0 lg:grid lg:grid-cols-10 px-2 pt-8 overflow-y-auto overflow-x-hidden lg:overflow-y-hidden scrollbar-hide">
+        <ScrambleText
+          withHover
+          href="/blogs"
+          text="blogs"
+          className="font-mono text-xs uppercase w-fit lg:hidden"
+        />
+        <div className="col-span-3 flex flex-col justify-between gap-8 lg:gap-0">
           <ScrambleText
             text={post.title}
-            className="font-sans text-3xl lg:text-5xl font-medium"
+            className="font-sans text-5xl lg:text-[60px] uppercase"
           />
-          <p className="font-mono text-[11px] uppercase text-gray-500">
-            {new Date(post.pubDate).toLocaleDateString("en-US", {
-              year: "numeric",
-              month: "long",
-              day: "numeric",
-            })}
-          </p>
+          <div className="h-1/2 flex flex-col-reverse lg:flex-col gap-4 lg:gap-0 justify-between">
+            <div className="flex flex-col gap-2 lg:gap-4">
+              <div className="grid grid-cols-3">
+                <p className="col-span-1 text-[11px] font-mono uppercase text-gray-500">
+                  PUBLISHED
+                </p>
+                <p className="col-span-1 text-[11px] font-mono uppercase">
+                  {new Date(post.pubDate).toLocaleDateString("en-US", {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                  })}
+                </p>
+              </div>
+              <div className="grid grid-cols-3">
+                <p className="col-span-1 text-[11px] font-mono uppercase text-gray-500">
+                  CATEGORY
+                </p>
+                <div className="flex flex-col gap-2">
+                  {post.categories.slice(0, 3).map((category, i) => (
+                    <ScrambleText
+                      key={i}
+                      text={category}
+                      className="text-[11px] font-mono uppercase"
+                    />
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div
-          className="blog-content"
-          dangerouslySetInnerHTML={{ __html: post.content }}
-        />
-        <Link
-          href="/blogs"
-          className="font-mono text-xs uppercase text-[#9eff00] hover:underline w-fit mt-4"
-        >
-          &larr; Back to blogs
-        </Link>
+        <div className="flex lg:justify-center lg:p-4 col-span-7 col-start-4 lg:overflow-y-auto lg:scrollbar-hide">
+          <div
+            className="blog-content max-w-full lg:max-w-180"
+            dangerouslySetInnerHTML={{ __html: post.content }}
+          />
+        </div>
       </div>
     </Container>
   );

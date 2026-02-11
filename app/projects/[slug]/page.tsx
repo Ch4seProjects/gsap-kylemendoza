@@ -42,7 +42,7 @@ export default async function ProjectPage({
                 <p className="col-span-1 text-[11px] font-mono uppercase text-gray-500">
                   SERVICES
                 </p>
-                <div className="flex flex-col">
+                <div className="flex flex-col gap-2">
                   {project.services.map((service, i) => (
                     <p
                       className="col-span-1 text-[11px] font-mono uppercase"
