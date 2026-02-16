@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useEffect } from "react";
+import gsap from "gsap";
 import ProjectCard from "./ProjectCard";
 import { projects } from "@/app/lib/mocks";
 
@@ -12,7 +13,24 @@ export default function ProjectShowcase({
   onLeave: () => void;
 }) {
   const carouselRef = useRef<HTMLDivElement>(null);
+  const desktopGridRef = useRef<HTMLDivElement>(null);
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  useEffect(() => {
+    const grid = desktopGridRef.current;
+    if (!grid) return;
+
+    const cards = grid.children;
+    gsap.set(cards, { yPercent: 100, opacity: 0 });
+    gsap.to(cards, {
+      yPercent: 0,
+      opacity: 1,
+      duration: 0.6,
+      stagger: 0.08,
+      ease: "power3.out",
+      delay: 0.1,
+    });
+  }, []);
 
   useEffect(() => {
     const carousel = carouselRef.current;
@@ -23,13 +41,13 @@ export default function ProjectShowcase({
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             const index = cardRefs.current.indexOf(
-              entry.target as HTMLDivElement
+              entry.target as HTMLDivElement,
             );
             if (index !== -1) onHover(index);
           }
         });
       },
-      { root: carousel, threshold: 0.6 }
+      { root: carousel, threshold: 0.6 },
     );
 
     cardRefs.current.forEach((card) => {
@@ -42,7 +60,10 @@ export default function ProjectShowcase({
   return (
     <div className="absolute bottom-0 w-full">
       {/* Desktop: static grid */}
-      <div className="hidden lg:grid group/grid grid-cols-5">
+      <div
+        ref={desktopGridRef}
+        className="hidden lg:grid group/grid grid-cols-5 overflow-hidden"
+      >
         {projects.map((project, i) => (
           <ProjectCard
             key={i}
@@ -63,7 +84,9 @@ export default function ProjectShowcase({
         {projects.map((project, i) => (
           <div
             key={i}
-            ref={(el) => { cardRefs.current[i] = el; }}
+            ref={(el) => {
+              cardRefs.current[i] = el;
+            }}
             className="snap-center shrink-0 w-[85%]"
           >
             <ProjectCard

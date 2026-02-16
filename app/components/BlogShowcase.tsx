@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useEffect } from "react";
+import gsap from "gsap";
 import BlogCard from "./BlogCard";
 import { BlogPost } from "@/app/lib/types";
 
@@ -14,7 +15,24 @@ export default function BlogShowcase({
   onLeave: () => void;
 }) {
   const carouselRef = useRef<HTMLDivElement>(null);
+  const desktopGridRef = useRef<HTMLDivElement>(null);
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  useEffect(() => {
+    const grid = desktopGridRef.current;
+    if (!grid) return;
+
+    const cards = grid.children;
+    gsap.set(cards, { yPercent: 100, opacity: 0 });
+    gsap.to(cards, {
+      yPercent: 0,
+      opacity: 1,
+      duration: 0.6,
+      stagger: 0.08,
+      ease: "power3.out",
+      delay: 0.1,
+    });
+  }, []);
 
   useEffect(() => {
     const carousel = carouselRef.current;
@@ -44,7 +62,10 @@ export default function BlogShowcase({
   return (
     <div className="absolute bottom-0 w-full ">
       {/* Desktop: static grid */}
-      <div className={`hidden lg:grid grid-cols-5 ${posts.length > 1 ? "group/grid" : ""}`}>
+      <div
+        ref={desktopGridRef}
+        className={`hidden lg:grid grid-cols-5 overflow-hidden ${posts.length > 1 ? "group/grid" : ""}`}
+      >
         {posts.map((post, i) => (
           <BlogCard
             key={post.slug}

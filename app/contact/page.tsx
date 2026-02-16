@@ -15,7 +15,7 @@ export default function Contact() {
           />
           <ScrambleText
             text="GET IN TOUCH"
-            className="font-sans text-5xl lg:text-[60px] font-medium"
+            className="font-sans text-5xl lg:text-[60px] font-medium mb-10"
           />
         </div>
         <ContactForm />
