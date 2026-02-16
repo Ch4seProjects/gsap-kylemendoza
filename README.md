@@ -1,36 +1,97 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Kyle Dominic Mendoza — Portfolio
+
+A modern, interactive portfolio featuring GSAP-powered animations, smooth scrolling, and a dynamic blog powered by Medium RSS.
+
+**[kylemendoza.netlify.app](https://kylemendoza.netlify.app/)**
+
+## Built With
+
+- [Next.js 16](https://nextjs.org/) — App Router, Server Components, Server Actions
+- [React 19](https://react.dev/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Tailwind CSS v4](https://tailwindcss.com/)
+- [GSAP](https://gsap.com/) — ScrambleTextPlugin, staggered reveal animations
+- [Lenis](https://lenis.darkroom.engineering/) — Smooth scrolling
+- [Resend](https://resend.com/) — Contact form email delivery
+- [rss-parser](https://github.com/rbren/rss-parser) — Medium blog integration
+
+## Features
+
+- **Text scramble animations** — Every heading and nav link uses GSAP ScrambleTextPlugin for character-by-character reveal effects
+- **Staggered card reveals** — Project and blog cards animate in from bottom with a left-to-right stagger on page load
+- **Smooth scrolling** — Lenis-powered smooth scroll on project galleries and blog content
+- **Dynamic blog** — Automatically fetches and renders articles from Medium via RSS
+- **Contact form** — Server action powered by Resend for email delivery
+- **Responsive design** — Mobile snap carousels, desktop hover grids, adaptive navigation
+- **SEO optimized** — Dynamic sitemap, robots.txt, OpenGraph images, JSON-LD structured data
+- **PWA ready** — Web app manifest with maskable icons
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js 20+
+- npm
+
+### Setup
+
+```bash
+# Clone the repo
+git clone https://github.com/Ch4seProjects/gsap-kylemendoza.git
+cd gsap-kylemendoza
+
+# Install dependencies
+npm install
+
+# Create environment file
+cp .env.example .env.local
+```
+
+Add your environment variables to `.env.local`:
+
+```env
+RESEND_API_KEY=your_resend_api_key
+CONTACT_EMAIL=your_email@example.com
+```
+
+### Development
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) to view it.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Production Build
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+npm run start
+```
 
-## Learn More
+## Deployment
 
-To learn more about Next.js, take a look at the following resources:
+This project is configured for **Netlify** deployment via `netlify.toml`.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Connect your GitHub repo to [Netlify](https://app.netlify.com/)
+2. Build settings are auto-detected from `netlify.toml`
+3. Add `RESEND_API_KEY` and `CONTACT_EMAIL` as environment variables in the Netlify dashboard
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Project Structure
 
-## Deploy on Vercel
+```
+app/
+├── components/         # UI components (Navigation, ScrambleText, Cards, Showcases)
+├── lib/                # Types, constants, mock data, Medium RSS fetcher
+├── contact/            # Contact page + Resend server action
+├── blogs/              # Blog listing + dynamic [slug] detail pages
+├── projects/           # Dynamic [slug] project detail pages
+├── info/               # About page
+├── layout.tsx          # Root layout with metadata and fonts
+├── page.tsx            # Home page
+└── globals.css         # Tailwind config, theme variables, utilities
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## License
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+This project is for personal portfolio use.

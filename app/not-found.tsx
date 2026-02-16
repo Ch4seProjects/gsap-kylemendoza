@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import ScrambleText from "@/app/components/ScrambleText";
 
 export const metadata: Metadata = {
   title: "Page Not Found",
@@ -15,11 +15,14 @@ export default function NotFound() {
         })}
       </div>
       <div className="font-sans text-center">
-        <h1 className="text-[128px] leading-none">404</h1>
-        <p className="text-xl mt-4 uppercase">Page not found</p>
-        <Link href="/" className="inline-block mt-6 text-sm uppercase underline underline-offset-4 hover:text-[#9eff00]">
-          Go back home
-        </Link>
+        <h1 className="text-[256px] font-sans leading-none">404</h1>
+        <p className="text-xl my-4 font-mono uppercase">Page not found</p>
+        <ScrambleText
+          withHover
+          href="/"
+          text="Go back home"
+          className="mt-6 text-sm font-mono uppercase w-fit mx-auto"
+        />
       </div>
     </main>
   );
