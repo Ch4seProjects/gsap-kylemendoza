@@ -1,15 +1,12 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import Image from "next/image";
 import Lenis from "lenis";
 
-export default function ScrollableGallery({
-  images,
-  name,
+export default function ScrollableBlogContent({
+  content,
 }: {
-  images: string[];
-  name: string;
+  content: string;
 }) {
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -35,18 +32,12 @@ export default function ScrollableGallery({
   return (
     <div
       ref={containerRef}
-      className="col-span-7 col-start-4 flex flex-col gap-10 lg:overflow-y-auto scrollbar-hide"
+      className="flex lg:justify-center lg:p-4 col-span-7 col-start-4 lg:overflow-y-auto scrollbar-hide"
     >
-      {images.map((image, i) => (
-        <div key={i} className="relative h-75 lg:h-screen shrink-0">
-          <Image
-            src={image}
-            alt={`${name} ${i + 1}`}
-            fill
-            className="object-cover"
-          />
-        </div>
-      ))}
+      <div
+        className="blog-content max-w-full lg:max-w-180"
+        dangerouslySetInnerHTML={{ __html: content }}
+      />
     </div>
   );
 }

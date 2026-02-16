@@ -10,7 +10,7 @@ export default function info() {
   return (
     <Container>
       <div className="flex-1 w-full flex flex-col-reverse justify-end lg:grid lg:grid-cols-10">
-        <div className="lg:hidden flex flex-col gap-4 mt-10">
+        <div className="lg:hidden flex flex-col gap-4 mt-10 pb-20">
           <EmailContact />
           <ProfileLink
             label={contacts[1].label}

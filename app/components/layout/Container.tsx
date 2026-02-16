@@ -9,7 +9,9 @@ export default function Container({ children }: { children: React.ReactNode }) {
       <header>
         <Navigation />
       </header>
-      <main className="flex-1 min-h-0 relative flex">{children}</main>
+      <main className="flex-1 min-h-0 relative flex overflow-y-auto lg:overflow-y-hidden scrollbar-hide">
+        {children}
+      </main>
       <div className="lg:hidden w-full absolute bottom-0 left-0 flex justify-around items-center p-4 border-t border-gray-600/10 bg-background">
         <ScrambleText
           withHover

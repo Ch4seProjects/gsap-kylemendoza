@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import Container from "@/app/components/layout/Container";
 import ScrambleText from "@/app/components/ScrambleText";
+import ScrollableBlogContent from "./ScrollableBlogContent";
 import { getMediumPost } from "@/app/lib/medium";
 import "./blog-content.css";
 
@@ -16,7 +17,7 @@ export default async function BlogPost({
 
   return (
     <Container>
-      <div className="flex-1 min-h-0 w-full flex flex-col gap-12 lg:gap-0 lg:grid lg:grid-cols-10 px-2 pt-8 overflow-y-auto overflow-x-hidden lg:overflow-y-hidden scrollbar-hide">
+      <div className="flex-1 min-h-0 w-full flex flex-col gap-12 lg:gap-0 lg:grid lg:grid-cols-10 px-2 pt-8 overflow-x-hidden">
         <ScrambleText
           withHover
           href="/blogs"
@@ -59,12 +60,7 @@ export default async function BlogPost({
             </div>
           </div>
         </div>
-        <div className="flex lg:justify-center lg:p-4 col-span-7 col-start-4 lg:overflow-y-auto lg:scrollbar-hide">
-          <div
-            className="blog-content max-w-full lg:max-w-180"
-            dangerouslySetInnerHTML={{ __html: post.content }}
-          />
-        </div>
+        <ScrollableBlogContent content={post.content} />
       </div>
     </Container>
   );
