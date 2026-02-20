@@ -84,7 +84,7 @@ export default async function ProjectPage({
             </p>
           </div>
         </div>
-        <ScrollableGallery images={project.images} name={project.name} />
+        <ScrollableGallery images={project.images.slice(1)} name={project.name} />
       </div>
     </Container>
   );

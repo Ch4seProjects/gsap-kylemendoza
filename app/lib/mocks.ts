@@ -2,21 +2,23 @@ import { Project } from "./types";
 
 export const projects: Project[] = [
   {
-    slug: "flavor-studios",
-    name: "Flavor Studios",
-    year: 2025,
-    services: ["Web Development", "UI/UX Design", "Branding"],
-    techStack: ["Next.js", "GSAP", "Tailwind CSS"],
-    liveSite: "https://flavorstudios.co",
+    slug: "trials",
+    name: "Trials",
+    year: 2024,
+    services: ["Web Development", "Desktop Development"],
+    techStack: ["Next.js", "Electron.js", "Graphql", "SCSS"],
+    liveSite: "https://trials.gg",
     carbonFootprint: "0.12g CO2/visit",
     images: [
-      "https://images.unsplash.com/photo-1541462608143-67571c6738dd?w=800&q=80",
-      "https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=800&q=80",
-      "https://images.unsplash.com/photo-1541462608143-67571c6738dd?w=800&q=80",
-      "https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=800&q=80",
+      "/projects/trials/trials-1.png",
+      "/projects/trials/trials-2.png",
+      "/projects/trials/trials-3.png",
+      "/projects/trials/trials-4.png",
+      "/projects/trials/trials-5.png",
+      "/projects/trials/trials-6.png",
     ],
     description:
-      "A creative studio platform built with modern web technologies. Features smooth page transitions, dynamic content loading, and an immersive visual experience.",
+      "A competitive gaming platform that transforms gameplay into structured Trials — objective-based challenges across Valorant, League of Legends, Apex Legends, and more. Earn points, collectible cards, and event tokens through proof of skill, not chance.",
   },
   {
     slug: "solara-energy",
