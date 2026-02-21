@@ -28,7 +28,7 @@ export const projects: Project[] = [
     liveSite: "https://virtual-tour-app.vercel.app/",
     carbonFootprint: "0.08g CO2/visit",
     images: [
-      "/projects/ecoventure/ecoventure-1.png",
+      "/projects/ecoventure/ecoventure-1.jpg",
       "/projects/ecoventure/ecoventure-2.png",
       "/projects/ecoventure/ecoventure-3.png",
       "/projects/ecoventure/ecoventure-4.png",
