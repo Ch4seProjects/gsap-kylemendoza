@@ -37,7 +37,7 @@ export default function info() {
         <div className="relative col-span-4 col-start-7 pt-8 lg:pb-30 flex flex-col lg:pl-4">
           <div className="relative w-[65%] lg:w-[98%] h-70 lg:h-1/2 ml-auto lg:ml-0">
             <Image
-              src="https://images.unsplash.com/photo-1541462608143-67571c6738dd?w=800&q=80"
+              src="/kyle.jpg"
               alt="Kyle Dominic Mendoza"
               fill
               className="object-cover"
