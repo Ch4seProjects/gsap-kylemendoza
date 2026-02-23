@@ -58,19 +58,24 @@ export const projects: Project[] = [
       "Monark's company portfolio showcasing their services and past products. Built with a focus on visual impact — powered by fluid animations using GSAP and Framer Motion.",
   },
   {
-    slug: "archetype-magazine",
-    name: "Archetype Magazine",
-    year: 2024,
-    services: ["Web Development", "CMS Integration", "Typography"],
-    techStack: ["Next.js", "Sanity CMS", "Tailwind CSS"],
-    liveSite: "https://archetypemag.com",
+    slug: "saytrack",
+    name: "SayTrack",
+    year: 2025,
+    services: [
+      "Web Development (Mobile-only)",
+      "UI/UX Design",
+      "Backend Development",
+    ],
+    techStack: ["Next.js", "Supabase", "Tailwind CSS"],
+    liveSite: "https://say-track.vercel.app/",
     carbonFootprint: "0.10g CO2/visit",
     images: [
-      "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=800&q=80",
-      "https://images.unsplash.com/photo-1457369804613-52c61a468e7d?w=800&q=80",
+      "/projects/saytrack/saytrack-1.png",
+      "/projects/saytrack/saytrack-2.png",
+      "/projects/saytrack/saytrack-3.png",
     ],
     description:
-      "A digital editorial experience for a contemporary design magazine. Features custom typeface integration, scroll-driven animations, and a headless CMS.",
+      "A social achievement tracking platform for students — join clubs, earn points, unlock titles, and compete on leaderboards. Built with admin tools for managing users and content.",
   },
   {
     slug: "pulse-fitness",
