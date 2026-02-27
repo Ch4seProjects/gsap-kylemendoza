@@ -5,7 +5,7 @@ import Container from "./components/layout/Container";
 import ScrambleText from "@/app/components/ScrambleText";
 import PhTime from "@/app/components/PhTime";
 import ProjectShowcase from "./components/ProjectShowcase";
-import ShowcaseErrorBoundary from "./components/ShowcaseErrorBoundary";
+import ErrorBoundary from "./components/ErrorBoundary";
 import { Project } from "@/app/lib/types";
 
 function ShowcaseFallback() {
@@ -102,7 +102,7 @@ export default function HomeClient({
         </div>
       </div>
 
-      <ShowcaseErrorBoundary>
+      <ErrorBoundary>
         <Suspense fallback={<ShowcaseFallback />}>
           <ShowcaseResolver
             projectsPromise={projectsPromise}
@@ -113,7 +113,7 @@ export default function HomeClient({
             onLeave={() => setHoveredIndex(null)}
           />
         </Suspense>
-      </ShowcaseErrorBoundary>
+      </ErrorBoundary>
     </Container>
   );
 }

@@ -2,7 +2,7 @@
 
 import { Component, ReactNode } from "react";
 
-export default class ShowcaseErrorBoundary extends Component<
+export default class ErrorBoundary extends Component<
   { children: ReactNode },
   { hasError: boolean }
 > {
@@ -20,7 +20,7 @@ export default class ShowcaseErrorBoundary extends Component<
       return (
         <div className="absolute bottom-0 w-full h-70 flex items-center justify-center">
           <p className="font-mono text-xs uppercase text-gray-600">
-            Failed to load projects.
+            Failed to load content.
           </p>
         </div>
       );
