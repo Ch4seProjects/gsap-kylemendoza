@@ -3,12 +3,14 @@
 import { useRef, useEffect } from "react";
 import gsap from "gsap";
 import ProjectCard from "./ProjectCard";
-import { projects } from "@/app/lib/mocks";
+import { Project } from "@/app/lib/types";
 
 export default function ProjectShowcase({
+  projects,
   onHover,
   onLeave,
 }: {
+  projects: Project[];
   onHover: (index: number) => void;
   onLeave: () => void;
 }) {

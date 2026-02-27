@@ -1,4 +1,4 @@
-import { projects } from "@/app/lib/mocks";
+import { getProject } from "@/app/lib/projects";
 import { notFound } from "next/navigation";
 import Container from "@/app/components/layout/Container";
 import ScrambleText from "@/app/components/ScrambleText";
@@ -10,7 +10,7 @@ export default async function ProjectPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const project = projects.find((p) => p.slug === slug);
+  const project = await getProject(slug);
 
   if (!project) return notFound();
 
