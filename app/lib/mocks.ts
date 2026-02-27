@@ -77,19 +77,19 @@ export const projects: Project[] = [
     description:
       "A social achievement tracking platform for students — join clubs, earn points, unlock titles, and compete on leaderboards. Built with admin tools for managing users and content.",
   },
-  {
-    slug: "pulse-fitness",
-    name: "Pulse Fitness",
-    year: 2024,
-    services: ["Web App", "UI/UX Design", "API Development"],
-    techStack: ["React", "Express", "PostgreSQL", "Chart.js"],
-    liveSite: "https://pulsefitness.app",
-    carbonFootprint: "0.18g CO2/visit",
-    images: [
-      "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800&q=80",
-      "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=800&q=80",
-    ],
-    description:
-      "A fitness tracking web app with personalized workout plans, progress analytics, and social features. Built with performance and accessibility in mind.",
-  },
+  // {
+  //   slug: "pulse-fitness",
+  //   name: "Pulse Fitness",
+  //   year: 2024,
+  //   services: ["Web App", "UI/UX Design", "API Development"],
+  //   techStack: ["React", "Express", "PostgreSQL", "Chart.js"],
+  //   liveSite: "https://pulsefitness.app",
+  //   carbonFootprint: "0.18g CO2/visit",
+  //   images: [
+  //     "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800&q=80",
+  //     "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=800&q=80",
+  //   ],
+  //   description:
+  //     "A fitness tracking web app with personalized workout plans, progress analytics, and social features. Built with performance and accessibility in mind.",
+  // },
 ];

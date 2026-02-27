@@ -23,7 +23,7 @@ export default function ProjectCard({
   return (
     <Link
       href={href}
-      className="group h-70 flex flex-col gap-2 px-2 cursor-pointer justify-end transition-[filter] duration-500 group-hover/grid:blur-xs hover:blur-none!"
+      className="group w-full h-70 flex flex-col gap-2 px-2 cursor-pointer justify-end transition-[filter] duration-500 group-hover/grid:blur-xs hover:blur-none!"
       onMouseEnter={() => {
         setIsHovered(true);
         onHover();

@@ -62,17 +62,18 @@ export default function ProjectShowcase({
       {/* Desktop: static grid */}
       <div
         ref={desktopGridRef}
-        className="hidden lg:grid group/grid grid-cols-5 overflow-hidden"
+        className="hidden lg:flex group/grid overflow-hidden"
       >
         {projects.map((project, i) => (
-          <ProjectCard
-            key={i}
-            index={i}
-            image={project.images[0]}
-            href={`/projects/${project.slug}`}
-            onHover={() => onHover(i)}
-            onLeave={onLeave}
-          />
+          <div key={i} className="flex-1 min-w-0">
+            <ProjectCard
+              index={i}
+              image={project.images[0]}
+              href={`/projects/${project.slug}`}
+              onHover={() => onHover(i)}
+              onLeave={onLeave}
+            />
+          </div>
         ))}
       </div>
 
