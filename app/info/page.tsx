@@ -23,15 +23,24 @@ export default function info() {
             text="INFO"
             className="font-sans text-5xl lg:text-[120px] font-medium"
           />
-          <div className="flex flex-col gap-6">
-            {bio.map((text, i) => (
-              <p
-                key={i}
-                className="font-sans text-xl lg:text-2xl font-normal lg:font-medium"
-              >
-                {text}
-              </p>
-            ))}
+          <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-6">
+              {bio.map((text, i) => (
+                <p
+                  key={i}
+                  className="font-sans text-xl lg:text-2xl font-normal lg:font-medium"
+                >
+                  {text}
+                </p>
+              ))}
+            </div>
+            <a
+              href="/Resume.pdf"
+              download
+              className="w-fit rounded-sm font-mono text-xs uppercase px-6 py-3 border border-[#9eff00] text-[#9eff00] hover:bg-[#9eff00] hover:text-black transition-colors"
+            >
+              Download CV
+            </a>
           </div>
         </div>
         <div className="relative col-span-4 col-start-7 pt-8 lg:pb-30 flex flex-col lg:pl-4">
