@@ -33,12 +33,14 @@ export default function ProjectCard({
         onLeave();
       }}
     >
-      <div className="relative h-[80%] rounded-lg overflow-hidden transition-all duration-500 group-hover/grid:h-[60%] group-hover:h-[80%]!">
+      <div className="relative h-[80%] rounded-lg overflow-hidden bg-[#141414] transition-all duration-500 group-hover/grid:h-[60%] group-hover:h-[80%]!">
         <Image
           src={image}
           alt={`Project ${index + 1}`}
           fill
           className="object-cover"
+          placeholder="blur"
+          blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
         />
       </div>
       <div className="flex justify-between h-[20%]">

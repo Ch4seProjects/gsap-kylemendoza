@@ -38,12 +38,14 @@ export default function ScrollableGallery({
       className="col-span-7 col-start-4 flex flex-col gap-10 lg:overflow-y-auto scrollbar-hide"
     >
       {images.map((image, i) => (
-        <div key={i} className="relative h-75 lg:h-screen shrink-0">
+        <div key={i} className="relative h-75 lg:h-screen shrink-0 bg-[#141414]">
           <Image
             src={image}
             alt={`${name} ${i + 1}`}
             fill
             className="object-cover"
+            placeholder="blur"
+            blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
           />
         </div>
       ))}

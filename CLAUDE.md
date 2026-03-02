@@ -1,8 +1,8 @@
 # Kyle Dominic Mendoza — Portfolio
 
-An interactive, animation-driven portfolio built with Next.js 16, GSAP, Lenis, and Tailwind CSS v4. Deployed on Netlify.
+An interactive, animation-driven portfolio built with Next.js 16, GSAP, Lenis, and Tailwind CSS v4. Deployed on vercel.
 
-**Live URL**: https://kylemendoza.netlify.app/
+**Live URL**: https://kylemendoza.vercel.app/
 
 ## Tech Stack
 
@@ -11,7 +11,7 @@ An interactive, animation-driven portfolio built with Next.js 16, GSAP, Lenis, a
 - **Animations**: GSAP 3.14 (ScrambleTextPlugin) + Lenis (smooth scrolling)
 - **Email**: Resend (contact form server action)
 - **Content**: Medium RSS feed via rss-parser
-- **Deployment**: Netlify with @netlify/plugin-nextjs
+- **Deployment**: Vercel
 - **Fonts**: Fragment Mono (monospace), Roboto (sans-serif)
 
 ## Project Structure
@@ -76,14 +76,14 @@ public/
 
 ## Pages / Routes
 
-| Route              | Component                        | Rendering        | Description                                             |
-| ------------------ | -------------------------------- | ---------------- | ------------------------------------------------------- |
-| `/`                | `page.tsx` + `HomeClient.tsx`    | Server → Client  | Home — project showcase with hover name/service/year    |
-| `/info`            | `info/page.tsx`                  | Client           | About — bio, contact info, profile image, Download CV   |
-| `/blogs`           | `blogs/page.tsx` + `BlogsClient` | Server → Client  | Blog listing — Medium posts in showcase grid            |
-| `/blogs/[slug]`    | `blogs/[slug]/page.tsx`          | SSR              | Blog detail — rendered HTML with Lenis scrolling        |
-| `/projects/[slug]` | `projects/[slug]/page.tsx`       | SSR              | Project detail — metadata + scrollable image gallery    |
-| `/contact`         | `contact/page.tsx`               | Client           | Contact form — sends email via Resend server action     |
+| Route              | Component                        | Rendering       | Description                                           |
+| ------------------ | -------------------------------- | --------------- | ----------------------------------------------------- |
+| `/`                | `page.tsx` + `HomeClient.tsx`    | Server → Client | Home — project showcase with hover name/service/year  |
+| `/info`            | `info/page.tsx`                  | Client          | About — bio, contact info, profile image, Download CV |
+| `/blogs`           | `blogs/page.tsx` + `BlogsClient` | Server → Client | Blog listing — Medium posts in showcase grid          |
+| `/blogs/[slug]`    | `blogs/[slug]/page.tsx`          | SSR             | Blog detail — rendered HTML with Lenis scrolling      |
+| `/projects/[slug]` | `projects/[slug]/page.tsx`       | SSR             | Project detail — metadata + scrollable image gallery  |
+| `/contact`         | `contact/page.tsx`               | Client          | Contact form — sends email via Resend server action   |
 
 ## Data Layer
 
@@ -106,12 +106,14 @@ All project data lives in `/public/projects.json`. To add or update a project, e
 ```
 
 Server functions in `app/lib/projects.ts`:
+
 - `getProjects()` — reads `public/projects.json` via `fs.readFileSync`, returns `Project[]`
 - `getProject(slug)` — finds one project by slug
 
 ### Blog Posts — Medium RSS
 
 `app/lib/medium.ts` fetches `https://medium.com/feed/@kylemendoza67` via `rss-parser`:
+
 - `getMediumPosts()` — parses feed items, extracts thumbnail from `<img>` tags in HTML content (matches `cdn-images-1.medium.com` or `miro.medium.com`)
 - `getMediumPost(slug)` — lookup by slug (last segment of Medium URL)
 
@@ -177,11 +179,11 @@ function ShowcaseResolver({ projectsPromise, onLoaded, onHover, onLeave }) {
 
 ### Error Handling
 
-| Mechanism | Where | Handles |
-|-----------|-------|---------|
+| Mechanism                   | Where                                    | Handles                       |
+| --------------------------- | ---------------------------------------- | ----------------------------- |
 | `ErrorBoundary.tsx` (class) | Wraps Suspense in HomeClient/BlogsClient | Showcase-level fetch failures |
-| `app/error.tsx` (client) | Next.js segment error boundary | Page-level unexpected errors |
-| `notFound()` | `projects/[slug]`, `blogs/[slug]` | Invalid slugs → 404 page |
+| `app/error.tsx` (client)    | Next.js segment error boundary           | Page-level unexpected errors  |
+| `notFound()`                | `projects/[slug]`, `blogs/[slug]`        | Invalid slugs → 404 page      |
 
 ## Animation Patterns
 
@@ -205,15 +207,19 @@ Cards animate in from below on page load:
 ```ts
 gsap.set(cards, { yPercent: 100, opacity: 0 });
 gsap.to(cards, {
-  yPercent: 0, opacity: 1,
-  duration: 0.6, stagger: 0.08,
-  ease: "power3.out", delay: 0.1
+  yPercent: 0,
+  opacity: 1,
+  duration: 0.6,
+  stagger: 0.08,
+  ease: "power3.out",
+  delay: 0.1,
 });
 ```
 
 ### Hover Blur Effect
 
 When hovering one card, siblings blur. Implemented purely with Tailwind CSS group variants:
+
 - Parent grid: `group/grid`
 - Each card: `group-hover/grid:blur-xs` (blur when sibling hovered)
 - Hovered card itself: `hover:blur-none!` (override to stay sharp)
@@ -224,11 +230,32 @@ Applied to overflow containers in detail pages:
 
 ```ts
 const lenis = new Lenis({ wrapper: el, content: el.firstChild });
-function raf(time: number) { lenis.raf(time); requestAnimationFrame(raf); }
+function raf(time: number) {
+  lenis.raf(time);
+  requestAnimationFrame(raf);
+}
 requestAnimationFrame(raf);
 // cleanup:
 lenis.destroy();
 ```
+
+### Image Blur Placeholder — `ProjectCard.tsx`, `BlogCard.tsx`, `ScrollableGallery.tsx`
+
+All `<Image>` components use `placeholder="blur"` with a hardcoded dark `blurDataURL` to show a dark blurred background while images load instead of an empty flash.
+
+```tsx
+<Image
+  src={image}
+  fill
+  className="object-cover"
+  placeholder="blur"
+  blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
+/>
+```
+
+**Why a hardcoded blurDataURL:** Images are loaded from path strings (JSON/RSS), not static imports — so Next.js cannot auto-generate per-image blur data at build time. A single 1×1 black pixel base64 is used for all images instead.
+
+**Important — use the correct base64:** The value above is a 1×1 grayscale black PNG. Do not substitute other "common" base64 snippets from tutorials — many produce unexpected tinted colors (green, yellow) when stretched and blurred by Next.js. The containers also have `bg-[#141414]` as a fallback in case the placeholder hasn't rendered yet.
 
 ### CSS Transitions
 
@@ -279,19 +306,19 @@ Tailwind `transition-*` utilities for color, opacity, filter. Image height in Pr
 
 ## Key Files for Common Tasks
 
-| Task | File |
-|------|------|
-| Add / edit a project | `public/projects.json` |
-| Add project images | `public/projects/<slug>/` |
-| Update CV | Replace `public/Resume.pdf` |
-| Change bio / contact info | `app/lib/constants.ts` |
-| Modify scramble animation | `app/components/ScrambleText.tsx` |
-| Modify card stagger | `app/components/ProjectShowcase.tsx`, `BlogShowcase.tsx` |
-| Adjust smooth scrolling | `ScrollableBlogContent.tsx`, `ScrollableGallery.tsx` |
-| Update SEO / metadata | `app/layout.tsx`, `app/sitemap.ts`, `app/robots.ts` |
-| Style blog content | `app/blogs/[slug]/blog-content.css` |
-| Allowed image domains | `next.config.ts` (remotePatterns) |
-| Deployment config | `netlify.toml` |
+| Task                      | File                                                     |
+| ------------------------- | -------------------------------------------------------- |
+| Add / edit a project      | `public/projects.json`                                   |
+| Add project images        | `public/projects/<slug>/`                                |
+| Update CV                 | Replace `public/Resume.pdf`                              |
+| Change bio / contact info | `app/lib/constants.ts`                                   |
+| Modify scramble animation | `app/components/ScrambleText.tsx`                        |
+| Modify card stagger       | `app/components/ProjectShowcase.tsx`, `BlogShowcase.tsx` |
+| Adjust smooth scrolling   | `ScrollableBlogContent.tsx`, `ScrollableGallery.tsx`     |
+| Update SEO / metadata     | `app/layout.tsx`, `app/sitemap.ts`, `app/robots.ts`      |
+| Style blog content        | `app/blogs/[slug]/blog-content.css`                      |
+| Allowed image domains     | `next.config.ts` (remotePatterns)                        |
+| Deployment config         | Vercel dashboard (env vars)                              |
 
 ## Environment Variables
 
@@ -317,7 +344,7 @@ npm run lint      # Run ESLint
 
 ## Deployment
 
-- **Platform**: Netlify via `@netlify/plugin-nextjs`
-- **Node version**: 20 (set in `netlify.toml`)
-- **Build command**: `npm run build`, publish dir: `.next`
+- **Platform**: Vercel (auto-detects Next.js, zero config)
+- **Build command**: `npm run build` (Vercel default)
+- **Env vars**: set `RESEND_API_KEY` and `CONTACT_EMAIL` in Vercel dashboard
 - **PWA**: manifest with 192×192 and 512×512 icons, display standalone, short name "KM"
