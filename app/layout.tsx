@@ -15,37 +15,47 @@ const roboto = Roboto({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://kylemendoza.com"),
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL ?? "https://kylemendoza.vercel.app",
+  ),
   title: {
-    default: "Kyle Dominic Mendoza",
-    template: "%s | Kyle Dominic Mendoza",
+    default: "Kyle Dominic Mendoza - Portfolio",
+    template: "%s | KDM",
   },
   description:
-    "Portfolio of Kyle Dominic Mendoza — Front-End Developer specializing in interactive, animation-driven web experiences.",
+    "Portfolio of Kyle Dominic Mendoza — Front-End Developer specializing in React.js and TypeScript.",
   keywords: [
     "Kyle Dominic Mendoza",
     "front-end developer",
-    "portfolio",
+    "marketing developer",
+    "SEO",
     "web developer",
     "GSAP",
     "Next.js",
-    "interactive design",
+    "Strapi",
   ],
   authors: [{ name: "Kyle Dominic Mendoza" }],
   creator: "Kyle Dominic Mendoza",
   openGraph: {
     type: "website",
     locale: "en_US",
-    siteName: "Kyle Dominic Mendoza",
-    title: "Kyle Dominic Mendoza",
-    description:
-      "Front-End Developer specializing in interactive, animation-driven web experiences.",
+    siteName: "Kyle Dominic Mendoza - Portfolio",
+    title: "Kyle Dominic Mendoza - Portfolio",
+    description: "Front-End Developer specializing in React.js and TypeScript.",
+    images: [
+      {
+        url: "/kyle.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Kyle Dominic Mendoza - Portfolio",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Kyle Dominic Mendoza",
-    description:
-      "Front-End Developer specializing in interactive, animation-driven web experiences.",
+    title: "Kyle Dominic Mendoza - Portfolio",
+    description: "Front-End Developer specializing in React.js and TypeScript.",
+    images: ["/kyle.jpg"],
   },
   robots: {
     index: true,
@@ -57,6 +67,10 @@ export const metadata: Metadata = {
       "max-image-preview": "large",
       "max-snippet": -1,
     },
+  },
+  alternates: {
+    canonical:
+      process.env.NEXT_PUBLIC_SITE_URL ?? "https://kylemendoza.vercel.app",
   },
 };
 
@@ -79,8 +93,10 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Person",
-              name: "Kyle Dominic Mendoza",
-              url: "https://kylemendoza.com",
+              name: "Kyle Dominic Mendoza - Portfolio",
+              url:
+                process.env.NEXT_PUBLIC_SITE_URL ??
+                "https://kylemendoza.vercel.app",
               jobTitle: "Front-End Developer",
               sameAs: [],
             }),

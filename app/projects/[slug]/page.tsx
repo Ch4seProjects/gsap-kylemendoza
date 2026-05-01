@@ -1,8 +1,27 @@
-import { getProject } from "@/app/lib/projects";
+import { getProject, getProjects } from "@/app/lib/projects";
 import { notFound } from "next/navigation";
 import Container from "@/app/components/layout/Container";
 import ScrambleText from "@/app/components/ScrambleText";
 import ScrollableGallery from "./ScrollableGallery";
+
+export async function generateStaticParams() {
+  const projects = await getProjects();
+  return projects.map((project) => ({ slug: project.slug }));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  const project = await getProject(slug);
+
+  return {
+    title: project?.name,
+    description: project?.description,
+  };
+}
 
 export default async function ProjectPage({
   params,
@@ -84,7 +103,10 @@ export default async function ProjectPage({
             </p>
           </div>
         </div>
-        <ScrollableGallery images={project.images.slice(1)} name={project.name} />
+        <ScrollableGallery
+          images={project.images.slice(1)}
+          name={project.name}
+        />
       </div>
     </Container>
   );

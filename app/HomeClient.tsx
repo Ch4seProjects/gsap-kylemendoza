@@ -13,7 +13,10 @@ function ShowcaseFallback() {
     <div className="absolute bottom-0 w-full">
       <div className="hidden lg:flex overflow-hidden">
         {Array.from({ length: 4 }).map((_, i) => (
-          <div key={i} className="flex-1 min-w-0 h-70 px-2 flex flex-col justify-end gap-2">
+          <div
+            key={i}
+            className="flex-1 min-w-0 h-70 px-2 flex flex-col justify-end gap-2"
+          >
             <div className="h-[80%] rounded-lg bg-white/5 animate-pulse" />
             <div className="h-[20%]" />
           </div>

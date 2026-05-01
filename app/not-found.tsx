@@ -1,10 +1,4 @@
-import type { Metadata } from "next";
 import ScrambleText from "@/app/components/ScrambleText";
-
-export const metadata: Metadata = {
-  title: "Page Not Found",
-  robots: { index: false },
-};
 
 export default function NotFound() {
   return (

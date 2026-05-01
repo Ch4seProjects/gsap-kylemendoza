@@ -5,7 +5,7 @@ export default function manifest(): MetadataRoute.Manifest {
     name: "Kyle Dominic Mendoza — Portfolio",
     short_name: "KM",
     description:
-      "Portfolio of Kyle Dominic Mendoza — Front-End Developer specializing in interactive, animation-driven web experiences.",
+      "Portfolio of Kyle Dominic Mendoza — Front-End Developer specializing in React.js and TypeScript.",
     start_url: "/",
     display: "standalone",
     background_color: "#ffffff",

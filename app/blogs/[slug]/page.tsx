@@ -2,8 +2,27 @@ import { notFound } from "next/navigation";
 import Container from "@/app/components/layout/Container";
 import ScrambleText from "@/app/components/ScrambleText";
 import ScrollableBlogContent from "./ScrollableBlogContent";
-import { getMediumPost } from "@/app/lib/medium";
+import { getMediumPost, getMediumPosts } from "@/app/lib/medium";
 import "./blog-content.css";
+
+export async function generateStaticParams() {
+  const blogs = await getMediumPosts();
+  return blogs.map((blog) => ({ slug: blog.slug }));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  const blog = await getMediumPost(slug);
+
+  return {
+    title: blog?.title,
+    description: blog?.title,
+  };
+}
 
 export default async function BlogPost({
   params,

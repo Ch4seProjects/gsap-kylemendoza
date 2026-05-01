@@ -1,6 +1,11 @@
+import { Metadata } from "next";
 import Container from "../components/layout/Container";
 import ScrambleText from "../components/ScrambleText";
 import ContactForm from "./ContactForm";
+
+export const metadata: Metadata = {
+  title: "Contact",
+};
 
 export default function Contact() {
   return (
