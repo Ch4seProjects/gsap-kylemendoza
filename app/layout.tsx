@@ -72,6 +72,9 @@ export const metadata: Metadata = {
     canonical:
       process.env.NEXT_PUBLIC_SITE_URL ?? "https://kylemendoza.vercel.app",
   },
+  verification: {
+    google: process.env.NEXT_PUBLIC_GOOGLE_VERIFICATION_ID,
+  },
 };
 
 export default function RootLayout({
