@@ -39,22 +39,24 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    siteName: "Kyle Dominic Mendoza - Portfolio",
-    title: "Kyle Dominic Mendoza - Portfolio",
-    description: "Front-End Developer specializing in React.js and TypeScript.",
+    siteName: "Kyle Dominic Mendoza - Website Portfolio",
+    title: "Kyle Dominic Mendoza - Website Portfolio",
+    description:
+      "Web Software Engineer specializing in React.js and TypeScript.",
     images: [
       {
         url: "/kyle.jpg",
         width: 1200,
         height: 630,
-        alt: "Kyle Dominic Mendoza - Portfolio",
+        alt: "Kyle Dominic Mendoza - Website Portfolio",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Kyle Dominic Mendoza - Portfolio",
-    description: "Front-End Developer specializing in React.js and TypeScript.",
+    title: "Kyle Dominic Mendoza - Website Portfolio",
+    description:
+      "Web Software Engineer specializing in React.js and TypeScript.",
     images: ["/kyle.jpg"],
   },
   robots: {
@@ -96,11 +98,11 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Person",
-              name: "Kyle Dominic Mendoza - Portfolio",
+              name: "Kyle Dominic Mendoza - Website Portfolio",
               url:
                 process.env.NEXT_PUBLIC_SITE_URL ??
                 "https://kylemendoza.vercel.app",
-              jobTitle: "Front-End Developer",
+              jobTitle: "Web Software Engineer",
               sameAs: [],
             }),
           }}
