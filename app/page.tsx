@@ -3,7 +3,7 @@ import { getProjects } from "@/app/lib/projects";
 import HomeClient from "@/app/HomeClient";
 
 export const metadata: Metadata = {
-  title: "Home | KDM",
+  title: "Home | Kyle Dominic Mendoza",
 };
 
 export default function Home() {

@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   ),
   title: {
     default: "Kyle Dominic Mendoza - Portfolio",
-    template: "%s | KDM",
+    template: "%s | Kyle Dominic Mendoza",
   },
   description:
     "Portfolio of Kyle Dominic Mendoza — Front-End Developer specializing in React.js and TypeScript.",
