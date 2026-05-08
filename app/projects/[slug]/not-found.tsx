@@ -3,9 +3,9 @@ import ScrambleText from "@/app/components/ScrambleText";
 
 export const metadata: Metadata = {
   title: {
-    absolute: "Page Not Found",
+    absolute: "Project Not Found",
   },
-  description: "The page you are looking for does not exist.",
+  description: "The project you are looking for does not exist.",
   robots: {
     index: false,
     follow: false,
@@ -21,8 +21,8 @@ export default function NotFound() {
         })}
       </div>
       <div className="font-sans text-center">
-        <h1 className="text-[256px] font-sans leading-none">404</h1>
-        <p className="text-xl my-4 font-mono uppercase">Page not found</p>
+        {/* <h1 className="text-[256px] font-sans leading-none">404</h1> */}
+        <p className="text-xl my-4 font-mono uppercase">Project Not Found</p>
         <ScrambleText
           withHover
           href="/"

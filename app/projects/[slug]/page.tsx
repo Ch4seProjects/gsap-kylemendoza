@@ -14,12 +14,31 @@ export async function generateMetadata({
 }: {
   params: Promise<{ slug: string }>;
 }) {
+  const baseUrl =
+    process.env.NEXT_PUBLIC_SITE_URL ?? "https://kylemendoza.vercel.app";
   const { slug } = await params;
   const project = await getProject(slug);
 
   return {
     title: project?.name,
     description: project?.description,
+    alternates: {
+      canonical: `${baseUrl}/projects/${slug}`,
+    },
+    openGraph: {
+      title: project?.name,
+      description: project?.description,
+      url: `${baseUrl}/projects/${slug}`,
+      siteName: "Kyle Dominic Mendoza",
+      type: "article",
+      images: [{ url: `${baseUrl}/${slug}/${slug}-1.png`, alt: project?.name }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: project?.name,
+      description: project?.description,
+      images: `${baseUrl}/${slug}/${slug}-1.png`,
+    },
   };
 }
 
@@ -28,86 +47,122 @@ export default async function ProjectPage({
 }: {
   params: Promise<{ slug: string }>;
 }) {
+  const baseUrl =
+    process.env.NEXT_PUBLIC_SITE_URL ?? "https://kylemendoza.vercel.app";
   const { slug } = await params;
   const project = await getProject(slug);
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: project?.name,
+    description: project?.description,
+    image: `${baseUrl}/${slug}/${slug}-1.png`,
+    url: `${baseUrl}/projects/${slug}`,
+    sameAs: project?.liveSite,
+    applicationCategory: "WebApplication",
+    dateCreated: project?.year?.toString(),
+    keywords: [
+      ...(project?.services ?? []),
+      ...(project?.techStack ?? []),
+    ].join(", "),
+    author: {
+      "@type": "Person",
+      name: "Kyle Dominic Mendoza",
+      url: baseUrl,
+    },
+    creator: {
+      "@type": "Person",
+      name: "Kyle Dominic Mendoza",
+      url: baseUrl,
+    },
+  };
 
   if (!project) return notFound();
 
   return (
-    <Container>
-      <div className="flex-1 min-h-0 w-full flex flex-col gap-12 lg:gap-0 lg:grid lg:grid-cols-10 px-2 pt-8">
-        <ScrambleText
-          withHover
-          href="/"
-          text="work"
-          className="font-mono text-xs uppercase w-fit lg:hidden"
-        />
-        <div className="col-span-3 flex flex-col justify-between gap-8 lg:gap-0">
-          <div className="flex flex-col gap-2">
-            <ScrambleText
-              text={project.name}
-              className="font-sans text-5xl lg:text-[60px] uppercase"
-            />
-            <ScrambleText
-              withHover
-              alwaysActive
-              text="Live View"
-              href={project.liveSite}
-              target="_blank"
-              className="font-mono text-xs uppercase w-fit ml-1"
-            />
-          </div>
-          <div className="h-1/2 flex flex-col-reverse lg:flex-col gap-4 lg:gap-0 justify-between">
-            <div className="flex flex-col gap-2 lg:gap-4">
-              <div className="grid grid-cols-3">
-                <p className="col-span-1 text-[11px] font-mono uppercase text-gray-500">
-                  YEAR
-                </p>
-                <p className="col-span-1 text-[11px] font-mono uppercase">
-                  {project.year}
-                </p>
-              </div>
-              <div className="grid grid-cols-3">
-                <p className="col-span-1 text-[11px] font-mono uppercase text-gray-500">
-                  SERVICES
-                </p>
-                <div className="flex flex-col gap-2">
-                  {project.services.map((service, i) => (
-                    <p
-                      className="col-span-1 text-[11px] font-mono uppercase"
-                      key={i}
-                    >
-                      {service}
-                    </p>
-                  ))}
-                </div>
-              </div>
-              <div className="grid grid-cols-3">
-                <p className="col-span-1 text-[11px] font-mono uppercase text-gray-500">
-                  TECH STACK
-                </p>
-                <div className="flex flex-col gap-2">
-                  {project.techStack.map((tech, i) => (
-                    <p
-                      className="col-span-1 text-[11px] font-mono uppercase"
-                      key={i}
-                    >
-                      {tech}
-                    </p>
-                  ))}
-                </div>
-              </div>
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(jsonLd),
+        }}
+      />
+      <Container>
+        <div className="flex-1 min-h-0 w-full flex flex-col gap-12 lg:gap-0 lg:grid lg:grid-cols-10 px-2 pt-8">
+          <ScrambleText
+            withHover
+            href="/"
+            text="work"
+            className="font-mono text-xs uppercase w-fit lg:hidden"
+          />
+          <div className="col-span-3 flex flex-col justify-between gap-8 lg:gap-0">
+            <div className="flex flex-col gap-2">
+              <ScrambleText
+                text={project.name}
+                className="font-sans text-5xl lg:text-[60px] uppercase"
+              />
+              <ScrambleText
+                withHover
+                alwaysActive
+                text="Live View"
+                href={project.liveSite}
+                target="_blank"
+                className="font-mono text-xs uppercase w-fit ml-1"
+              />
             </div>
-            <p className="text-[10px] text-white/50 leading-4 lg:leading-none lg:text-white lg:text-2xl font-mono lg:font-sans font-medium pr-4 uppercase lg:normal-case">
-              {project.description}
-            </p>
+            <div className="h-1/2 flex flex-col-reverse lg:flex-col gap-4 lg:gap-0 justify-between">
+              <div className="flex flex-col gap-2 lg:gap-4">
+                <div className="grid grid-cols-3">
+                  <p className="col-span-1 text-[11px] font-mono uppercase text-gray-500">
+                    YEAR
+                  </p>
+                  <p className="col-span-1 text-[11px] font-mono uppercase">
+                    {project.year}
+                  </p>
+                </div>
+                <div className="grid grid-cols-3">
+                  <p className="col-span-1 text-[11px] font-mono uppercase text-gray-500">
+                    SERVICES
+                  </p>
+                  <div className="flex flex-col gap-2">
+                    {project.services.map((service, i) => (
+                      <p
+                        className="col-span-1 text-[11px] font-mono uppercase"
+                        key={i}
+                      >
+                        {service}
+                      </p>
+                    ))}
+                  </div>
+                </div>
+                <div className="grid grid-cols-3">
+                  <p className="col-span-1 text-[11px] font-mono uppercase text-gray-500">
+                    TECH STACK
+                  </p>
+                  <div className="flex flex-col gap-2">
+                    {project.techStack.map((tech, i) => (
+                      <p
+                        className="col-span-1 text-[11px] font-mono uppercase"
+                        key={i}
+                      >
+                        {tech}
+                      </p>
+                    ))}
+                  </div>
+                </div>
+              </div>
+              <p className="text-[10px] text-white/50 leading-4 lg:leading-none lg:text-white lg:text-2xl font-mono lg:font-sans font-medium pr-4 uppercase lg:normal-case">
+                {project.description}
+              </p>
+            </div>
           </div>
+          <ScrollableGallery
+            images={project.images.slice(1)}
+            name={project.name}
+          />
         </div>
-        <ScrollableGallery
-          images={project.images.slice(1)}
-          name={project.name}
-        />
-      </div>
-    </Container>
+      </Container>
+    </>
   );
 }

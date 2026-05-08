@@ -18,14 +18,12 @@ export const metadata: Metadata = {
   metadataBase: new URL(
     process.env.NEXT_PUBLIC_SITE_URL ?? "https://kylemendoza.vercel.app",
   ),
-  title: {
-    default: "Kyle Dominic Mendoza - Portfolio",
-    template: "%s | Kyle Dominic Mendoza",
-  },
+  title: "Kyle Dominic Mendoza - Front-End Developer",
   description:
-    "Portfolio of Kyle Dominic Mendoza — Front-End Developer specializing in React.js and TypeScript.",
+    "Kyle Dominic Mendoza | Front-End Developer crafting clean, performant UIs with React.js and TypeScript. View my portfolio and projects.",
   keywords: [
     "Kyle Dominic Mendoza",
+    "Kyle Mendoza",
     "front-end developer",
     "marketing developer",
     "SEO",
@@ -39,8 +37,8 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    siteName: "Kyle Dominic Mendoza - Website Portfolio",
-    title: "Kyle Dominic Mendoza - Website Portfolio",
+    siteName: "Kyle Dominic Mendoza - Front-End Developer",
+    title: "Kyle Dominic Mendoza - Front-End Developer",
     description:
       "Web Software Engineer specializing in React.js and TypeScript.",
     images: [
@@ -48,13 +46,13 @@ export const metadata: Metadata = {
         url: "/kyle.jpg",
         width: 1200,
         height: 630,
-        alt: "Kyle Dominic Mendoza - Website Portfolio",
+        alt: "Kyle Dominic Mendoza - Front-End Developer",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Kyle Dominic Mendoza - Website Portfolio",
+    title: "Kyle Dominic Mendoza - Front-End Developer",
     description:
       "Web Software Engineer specializing in React.js and TypeScript.",
     images: ["/kyle.jpg"],
@@ -98,7 +96,7 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Person",
-              name: "Kyle Dominic Mendoza - Website Portfolio",
+              name: "Kyle Dominic Mendoza - Front-End Developer",
               url:
                 process.env.NEXT_PUBLIC_SITE_URL ??
                 "https://kylemendoza.vercel.app",

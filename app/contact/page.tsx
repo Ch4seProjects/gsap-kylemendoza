@@ -5,6 +5,8 @@ import ContactForm from "./ContactForm";
 
 export const metadata: Metadata = {
   title: "Contact",
+  description:
+    "Get in touch with Kyle Dominic Mendoza — open to collaborations, freelance work, and opportunities in front-end development.",
 };
 
 export default function Contact() {

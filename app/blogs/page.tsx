@@ -4,6 +4,8 @@ import BlogsClient from "./BlogsClient";
 
 export const metadata: Metadata = {
   title: "Blogs",
+  description:
+    "Web development tutorials by Kyle Dominic Mendoza — practical guides on React.js, TypeScript, and modern front-end development.",
 };
 
 export default function Blogs() {

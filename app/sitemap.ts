@@ -33,32 +33,31 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   ];
 
-  // try {
-  //   // Fetch dynamic blog posts
-  //   const blogPosts = await getMediumPosts();
+  try {
+    // Fetch dynamic blog posts
+    const blogPosts = await getMediumPosts();
 
-  //   const blogPages: MetadataRoute.Sitemap = blogPosts.map((post) => ({
-  //     url: `${baseUrl}/blogs/${post.slug}`,
-  //     lastModified: new Date(post.pubDate),
-  //     changeFrequency: "weekly",
-  //     priority: 0.6,
-  //   }));
+    const blogPages: MetadataRoute.Sitemap = blogPosts.map((post) => ({
+      url: `${baseUrl}/blogs/${post.slug}`,
+      lastModified: new Date(post.pubDate),
+      changeFrequency: "weekly",
+      priority: 0.6,
+    }));
 
-  //   // Fetch dynamic portfolio projects
-  //   const projects = await getProjects();
-  //   const projectPages: MetadataRoute.Sitemap = projects.map((project) => ({
-  //     url: `${baseUrl}/projects/${project.slug}`,
-  //     lastModified: new Date(`${project.year}-01-01`),
-  //     changeFrequency: "monthly",
-  //     priority: 0.7,
-  //   }));
+    // Fetch dynamic portfolio projects
+    const projects = await getProjects();
+    const projectPages: MetadataRoute.Sitemap = projects.map((project) => ({
+      url: `${baseUrl}/projects/${project.slug}`,
+      lastModified: new Date(`${project.year}-01-01`),
+      changeFrequency: "monthly",
+      priority: 0.7,
+    }));
 
-  //   // Combine all pages
-  //   return [...staticPages, ...blogPages, ...projectPages];
-  // } catch (error) {
-  //   console.error("Error generating sitemap:", error);
-  //   // Return static pages if dynamic content fails
-  //   return staticPages;
-  // }
-  return staticPages;
+    // Combine all pages
+    return [...staticPages, ...blogPages, ...projectPages];
+  } catch (error) {
+    console.error("Error generating sitemap:", error);
+    // Return static pages if dynamic content fails
+    return staticPages;
+  }
 }
