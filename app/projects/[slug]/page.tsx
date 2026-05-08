@@ -31,13 +31,18 @@ export async function generateMetadata({
       url: `${baseUrl}/projects/${slug}`,
       siteName: "Kyle Dominic Mendoza",
       type: "article",
-      images: [{ url: `${baseUrl}/${slug}/${slug}-1.png`, alt: project?.name }],
+      images: [
+        {
+          url: `${baseUrl}/projects/${slug}/${slug}-1.png`,
+          alt: project?.name,
+        },
+      ],
     },
     twitter: {
       card: "summary_large_image",
       title: project?.name,
       description: project?.description,
-      images: `${baseUrl}/${slug}/${slug}-1.png`,
+      images: `${baseUrl}/projects/${slug}/${slug}-1.png`,
     },
   };
 }
@@ -57,7 +62,7 @@ export default async function ProjectPage({
     "@type": "SoftwareApplication",
     name: project?.name,
     description: project?.description,
-    image: `${baseUrl}/${slug}/${slug}-1.png`,
+    image: `${baseUrl}/projects/${slug}/${slug}-1.png`,
     url: `${baseUrl}/projects/${slug}`,
     sameAs: project?.liveSite,
     applicationCategory: "WebApplication",
